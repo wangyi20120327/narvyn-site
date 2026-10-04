@@ -825,3 +825,15 @@ html.is-intro { overflow: hidden; }
 .footer-links a:hover { color: var(--t1); }
 
 .footer-row p { margin: 0; color: var(--t3); }
+
+/* 下载暂时关闭提示条（2026-10-04 用户指令：先封锁下载） */
+.dl-closed {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f5f6f8;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
