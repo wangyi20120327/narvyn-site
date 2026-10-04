@@ -1,0 +1,9 @@
+{
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "url": "https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk",
+  "urlBackup": "https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk",
+  "apkSize": 121637940,
+  "sha1": "38c3ca093cd775f6351e2e339217ba201dc87a12",
+  "notes": ["首个公开托管版本", "浏览/下载/解压/模拟一站式", "修复大文件下载 .mpart 残留"]
+}
