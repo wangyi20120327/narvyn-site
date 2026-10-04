@@ -1,13 +1,16 @@
 {
-  "versionName": "1.1.0",
-  "versionCode": 2,
+  "versionName": "1.2.0",
+  "versionCode": 3,
   "url": "https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk",
   "urlBackup": "https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk",
-  "apkSize": 39172349,
-  "sha1": "8077446bf8777003ea0cb76351fd6f03bde3c9e7",
+  "apkSize": 39211857,
+  "sha1": "5f39edf8f489f1b5ef716b75b0845772daf3f5ec",
   "notes": [
-    "安装包从 116 MB 瘦身到 37 MB",
-    "模拟器内核改为首次使用时自动下载配置（约 79 MB）",
-    "新增应用内检查更新：一键获取新版本并安装"
+    "模拟器设置页打不开：修复（所有入口先自动准备环境，缺内核会显示下载按钮）",
+    "提示框全部重做成墨玻璃材质，看得清了",
+    "主题切换（跟随系统/暗色/亮色）修复：立即生效，带平滑过渡动画",
+    "内置浏览器：夸克登录修复（放开跨站 Cookie），加载失败有中文原因+一键重试/清缓存/系统浏览器",
+    "诊断日志：右上角一键导出成单个文件直接分享；检测出的问题可直接跳去修复",
+    "下载目录：引导授权保存到系统「下载」文件夹，授权后立即生效不用重启"
   ]
 }

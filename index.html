@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Narvyn — 为 touchgal.ink 打造的安卓客户端</title>
   <meta name="description" content="Narvyn：为 touchgal.ink 打造的安卓客户端。浏览、分段多连接下载、内置解压与 Winlator 模拟器，一站式体验。下载 APK 立即安装。">
-  <meta name="theme-color" content="#fbfbfd">
+  <meta name="theme-color" content="#000000">
   <meta property="og:title" content="Narvyn — 浏览 · 下载 · 解压 · 模拟">
   <meta property="og:description" content="为 touchgal.ink 打造的安卓客户端，一站式体验全部内容。">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233B6FE0'/%3E%3Cstop offset='1' stop-color='%237A4DE8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif' font-size='32' font-weight='600' fill='%23fff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23000000'/%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='none' stroke='%23FFFFFF' stroke-opacity='.16'/%3E%3Cpath d='M6 6h22L6 44z' fill='%23FFFFFF' fill-opacity='.12'/%3E%3Ctext x='32' y='43' font-family='-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif' font-size='32' font-weight='700' fill='%23F5F6F8' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <!-- GSAP 自托管（无外链 CDN）；defer 保证按序执行，app.js 跑起来时 window.gsap 已就绪 -->
   <script src="assets/js/gsap.min.js" defer></script>
@@ -21,23 +21,23 @@
   <!-- 开屏加载动画：默认 hidden，仅首次访问由 JS 激活；无 JS 时永远不会出现 -->
   <div class="loader" id="loader" hidden aria-hidden="true">
     <div class="loader-core">
-      <div class="loader-wordmark" id="loaderWordmark">Narvyn</div>
+      <div class="loader-mark" id="loaderMark" aria-hidden="true"><span>N</span></div>
+      <div class="loader-word" id="loaderWord">Narvyn</div>
       <div class="loader-bar"><span class="loader-bar-fill" id="loaderBarFill"></span></div>
     </div>
   </div>
 
   <a class="skip-link" href="#main">跳到主要内容</a>
 
+  <!-- 悬浮玻璃胶囊导航 -->
   <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a class="nav-logo" href="#top">Narvyn</a>
-      <nav class="nav-links" aria-label="页面导航">
-        <a href="#features">特性</a>
-        <a href="#gallery">界面预览</a>
-        <a href="#download">下载</a>
-      </nav>
-      <a class="nav-cta" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>下载安装包</a>
-    </div>
+    <a class="nav-logo" href="#top">Narvyn</a>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#features">特性</a>
+      <a href="#gallery">预览</a>
+      <a href="#download">下载</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>下载</a>
   </header>
 
   <main id="main">
@@ -46,18 +46,19 @@
     <section class="hero" id="top">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow st">为 touchgal.ink 打造的安卓客户端</p>
+          <p class="chip st">为 touchgal.ink 打造的安卓客户端</p>
           <h1 class="hero-title st">Narvyn</h1>
-          <p class="hero-subtitle st"><span>浏览 · 下载 · 解压 · 模拟</span></p>
-          <p class="hero-sub st">一站式访问 touchgal.ink：浏览资源、分段多连接下载、原地解压，随即在内置模拟器中直接开始游戏。</p>
+          <p class="hero-kicker st">浏览 · 下载 · 解压 · 模拟</p>
+          <p class="hero-sub st">一站式访问 touchgal.ink：快照秒开的浏览、分段多连接下载、原地解压，再到内置模拟器里直接开玩 —— 从看到玩，一部手机就够了。</p>
           <div class="hero-ctas st">
-            <a class="btn btn-primary" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>下载 APK</a>
-            <a class="link-arrow" href="#features">了解特性 <span class="link-arrow-glyph" aria-hidden="true">↓</span></a>
+            <!-- 生死线：裸 <a download> 直链，不依赖任何 JS / 图片 -->
+            <a class="btn btn--white" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>下载 APK</a>
+            <a class="btn btn--glass" href="#features">了解特性 <span class="btn-glyph" aria-hidden="true">↓</span></a>
           </div>
         </div>
         <div class="hero-phone" id="heroPhone">
           <div class="hero-phone-wrap">
-            <div class="phone-mockup">
+            <div class="phone">
               <div class="phone-screen">
                 <img src="assets/img/shot-home.webp" alt="Narvyn 首页瀑布流界面" width="720" height="1280" fetchpriority="high" decoding="async" onerror="this.style.opacity='0'">
               </div>
@@ -67,126 +68,135 @@
       </div>
     </section>
 
-    <!-- 界面预览：横向截图长廊 -->
-    <section class="gallery" id="gallery">
-      <div class="gallery-inner">
-        <header class="section-head">
-          <p class="eyebrow">界面预览</p>
-          <h2>五屏，看懂 Narvyn。</h2>
-          <p class="section-sub">横向滑动，逐一细看。</p>
-        </header>
-        <div class="gallery-viewport">
-          <ul class="gallery-track">
-            <li class="gallery-card">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <img src="assets/img/shot-home.webp" alt="首页瀑布流界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
-                </div>
-              </div>
-              <h3>首页瀑布流</h3>
-              <p>快照秒开，进来就是内容</p>
-            </li>
-            <li class="gallery-card">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <img src="assets/img/shot-detail.webp" alt="作品详情界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
-                </div>
-              </div>
-              <h3>作品详情</h3>
-              <p>介绍、标签与资源，一眼到底</p>
-            </li>
-            <li class="gallery-card">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <img src="assets/img/shot-downloads.webp" alt="下载中心界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
-                </div>
-              </div>
-              <h3>下载中心</h3>
-              <p>分段进度，实时可见</p>
-            </li>
-            <li class="gallery-card">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <img src="assets/img/shot-resource.webp" alt="资源列表界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
-                </div>
-              </div>
-              <h3>资源列表</h3>
-              <p>网盘直连，转存即下</p>
-            </li>
-            <li class="gallery-card">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <img src="assets/img/shot-emulator.webp" alt="内置模拟器主界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
-                </div>
-              </div>
-              <h3>内置模拟器</h3>
-              <p>Windows 游戏，开箱即玩</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 特性 bento -->
+    <!-- 核心特性 -->
     <section class="features" id="features">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">特性</p>
+          <p class="chip">核心特性</p>
           <h2>该有的，都在。</h2>
           <p class="section-sub">从打开到开始游戏，一部手机就够了。</p>
         </header>
-        <ul class="bento">
-          <li class="bento-card bento-card--w3">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="3"/><circle cx="9" cy="10.2" r="1.4"/><path d="M3.5 16.5l4.2-4.2a1.8 1.8 0 0 1 2.6 0l5.2 5.2"/><path d="M14.2 13.6l1.7-1.7a1.8 1.8 0 0 1 2.6 0l2 2"/></svg>
+        <ul class="feature-grid">
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="14" rx="3"/><circle cx="9" cy="10.2" r="1.4"/><path d="M3.5 16.5l4.2-4.2a1.8 1.8 0 0 1 2.6 0l5.2 5.2"/><path d="M14.2 13.6l1.7-1.7a1.8 1.8 0 0 1 2.6 0l2 2"/></svg>
             </span>
             <h3>快照秒开</h3>
             <p>首页缓存快照，打开 App 的瞬间就有内容，不必等网络。</p>
           </li>
-          <li class="bento-card bento-card--w3">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v9.7"/><path d="m8.2 9.6 3.8 3.7 3.8-3.7"/><path d="M4.5 17.5h4"/><path d="M10 17.5h4"/><path d="M15.5 17.5h4"/></svg>
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v9.7"/><path d="m8.2 9.6 3.8 3.7 3.8-3.7"/><path d="M4.5 17.5h4"/><path d="M10 17.5h4"/><path d="M15.5 17.5h4"/></svg>
             </span>
             <h3>分段多连接下载</h3>
-            <p>aria2 式 Range 并行下载，默认 4 连接、可调至 8；中断续传，不必重来。</p>
+            <p>aria2 式 Range 并行下载，默认 4 连接、可调至 8；断点续传，不必重来。</p>
           </li>
-          <li class="bento-card bento-card--w2">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="4.5" rx="1.5"/><path d="M5.5 8.5V17a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V8.5"/><path d="M12 12v3.5"/><path d="m10.2 13.8 1.8 1.7 1.8-1.7"/></svg>
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="4.5" rx="1.5"/><path d="M5.5 8.5V17a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V8.5"/><path d="M12 12v3.5"/><path d="m10.2 13.8 1.8 1.7 1.8-1.7"/></svg>
             </span>
             <h3>内置解压</h3>
             <p>libarchive 引擎，.zip、.7z 下载完原地解压，不装第二款工具。</p>
           </li>
-          <li class="bento-card bento-card--w2">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.88 17.09A5 5 0 0 0 18 8.5h-1.26A8 8 0 1 0 3 15.79"/><path d="M12 12.5V21"/><path d="m8.5 17.5 3.5 3.5 3.5-3.5"/></svg>
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.88 17.09A5 5 0 0 0 18 8.5h-1.26A8 8 0 1 0 3 15.79"/><path d="M12 12.5V21"/><path d="m8.5 17.5 3.5 3.5 3.5-3.5"/></svg>
             </span>
             <h3>夸克网盘直下</h3>
             <p>粘贴分享链接，自动转存、提取直链，下载完成自动清理副本。</p>
           </li>
-          <li class="bento-card bento-card--w2">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4"/><path d="M6 12.5h4"/><circle cx="15.3" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="17.8" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4"/><path d="M6 12.5h4"/><circle cx="15.3" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="17.8" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
             </span>
             <h3>内置 Winlator 模拟器</h3>
             <p>Windows 游戏直接运行，显卡驱动、分辨率、按键映射全套可调。</p>
           </li>
-          <li class="bento-card bento-card--w6">
-            <span class="bento-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="3"/><path d="m7 9.5 3.2 2.7L7 14.9"/><path d="M12.5 15H17"/></svg>
+          <li class="fcard">
+            <span class="fcard-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3.5V7h-3.5"/><path d="m9.5 12 2 2 3.5-3.5"/></svg>
             </span>
-            <h3>诊断日志</h3>
-            <p>崩溃堆栈与 logcat 一目了然，一键复制分享，问题可追踪；日志达 6 MB 自动滚动清理，不占空间。</p>
+            <h3>应用内检查更新</h3>
+            <p>一键检查新版本并安装，版本信息直连 Release 源，覆盖升级不丢数据。</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- 数字区（深色） -->
+    <!-- 界面预览：横向截图长廊 -->
+    <section class="gallery" id="gallery">
+      <div class="gallery-inner">
+        <header class="section-head">
+          <p class="chip">界面预览</p>
+          <h2>六屏，看懂 Narvyn。</h2>
+          <p class="section-sub">左右滑动，逐一细看。</p>
+        </header>
+      </div>
+      <div class="gallery-viewport">
+        <ul class="gallery-track">
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-home.webp" alt="首页瀑布流界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>首页瀑布流</h3>
+            <p>快照秒开，进来就是内容</p>
+          </li>
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-detail.webp" alt="作品详情界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>作品详情</h3>
+            <p>介绍、标签与资源，一眼到底</p>
+          </li>
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-downloads.webp" alt="下载中心界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>下载中心</h3>
+            <p>分段进度，实时可见</p>
+          </li>
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-resource.webp" alt="资源列表界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>资源列表</h3>
+            <p>网盘直连，转存即下</p>
+          </li>
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-emulator.webp" alt="内置模拟器主界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>内置模拟器</h3>
+            <p>Windows 游戏，开箱即玩</p>
+          </li>
+          <li class="gcard">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="assets/img/shot-settings.webp" alt="设置界面" width="720" height="1280" loading="lazy" decoding="async" onerror="this.style.opacity='0'">
+              </div>
+            </div>
+            <h3>设置</h3>
+            <p>引擎、画质与按键，随心调</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 数字区 -->
     <section class="stats" id="stats">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">性能</p>
+          <p class="chip">性能</p>
           <h2>断点续传，毫秒级恢复。</h2>
           <p class="section-sub">这些数字，来自真实的使用。</p>
         </header>
@@ -202,14 +212,14 @@
             <p>多任务并发，互不抢占</p>
           </li>
           <li class="stat">
+            <span class="stat-num"><span data-count="37">37</span><span class="stat-unit">MB</span></span>
+            <span class="stat-label">安装包体积</span>
+            <p>下载快，装得更快</p>
+          </li>
+          <li class="stat">
             <span class="stat-num"><span data-count="153">153</span><span class="stat-unit">MB</span></span>
             <span class="stat-label">模拟器系统镜像</span>
             <p>首次使用自动下载，一次即可</p>
-          </li>
-          <li class="stat">
-            <span class="stat-num"><span data-count="6">6</span><span class="stat-unit">MB</span></span>
-            <span class="stat-label">诊断日志上限</span>
-            <p>自动滚动清理，不占空间</p>
           </li>
         </ul>
       </div>
@@ -217,21 +227,26 @@
 
     <!-- 下载区 -->
     <section class="download" id="download">
-      <div class="download-card">
-        <div class="download-info">
-          <p class="eyebrow eyebrow--dark">下载</p>
+      <div class="dl-card">
+        <div class="dl-info">
+          <p class="chip">下载</p>
           <h2>现在，装到你的手机上。</h2>
-          <p class="download-meta">版本 v1.1.0 · 约 37 MB · 2026-10-04</p>
-          <div class="download-ctas">
-            <a class="btn btn-primary btn-lg" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>直连下载 APK</a>
-            <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk">境内加速下载</a>
+          <p class="dl-meta">版本 v1.1.0 · 约 37 MB · 2026-10-04</p>
+          <div class="dl-ctas">
+            <!-- 生死线：裸 <a download> 直链，不依赖任何 JS / 图片 -->
+            <a class="btn btn--accent btn--lg" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>直连下载 APK</a>
+            <a class="btn btn--glass btn--lg" href="https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk">境内加速下载</a>
           </div>
-          <ol class="download-steps">
+          <ol class="dl-steps">
             <li>下载 APK 文件</li>
             <li>允许「安装未知应用」</li>
             <li>安装，覆盖旧版本</li>
           </ol>
-          <p class="download-note">SHA1 见 README · 个人自用 · 请勿公开分发</p>
+          <div class="dl-sha">
+            <span class="dl-sha-label">SHA1</span>
+            <code class="dl-sha-code">8077446bf8777003ea0cb76351fd6f03bde3c9e7</code>
+          </div>
+          <p class="dl-note">个人自用 · 请勿公开分发 · 与 touchgal.ink 无隶属关系</p>
         </div>
         <div class="qr-box">
           <div class="qr-plate">
@@ -250,6 +265,7 @@
         <p class="footer-brand">Narvyn</p>
         <nav class="footer-links" aria-label="页脚链接">
           <a href="https://github.com/wangyi20120327/narvyn-site" rel="noopener">GitHub 仓库</a>
+          <a href="https://github.com/wangyi20120327/narvyn-releases" rel="noopener">发布页</a>
         </nav>
       </div>
       <div class="footer-row">
