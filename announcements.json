@@ -1,0 +1,60 @@
+{
+  "_comment": "Narvyn 公告清单（用户 2026-10-05 需求）。与 update.json 同一托管点、同一套发布流程：改完提交到 narvyn-site 仓，Cloudflare Pages 自动部署。App 端读取地址 = lib/version.dart 的 kAnnouncementUrl；解析代码 = lib/announcements.dart。字段含义：kind = 'resident' 常驻（首页顶部圆角卡，多条自动轮播）| 'popup' 即时（冷启动弹窗，右下角可关，只弹 date 最新的那一条）；summary 是卡片上的一行摘要；body 是详情页正文（Markdown）；images / videos 是详情页的图墙与播放卡，必须给 https 直链，非 http 开头的条目会被丢掉。当前内容是用户口述的测试样例（欢迎使用开发预览版下载器），上正式公告时整份覆盖即可。",
+  "_note2": "视频样例用 MDN 的 flower.mp4（1.1 MB，2026-10-05 实测 200 video/mp4）。站方 PV 源 cloud.touchgaloss.com 的那条老链接同日实测已 404 —— 站外链接会腐烂，正式公告要放站内 PV 请先自己验一遍 200，别假设还在。",
+  "items": [
+    {
+      "id": "a-2026-10-05-welcome",
+      "kind": "resident",
+      "title": "欢迎使用开发预览版下载器",
+      "summary": "分段多连接下载 · 断点续传 · 内置解压，一站搞定 TouchGal 资源",
+      "date": 1791162000000,
+      "images": [
+        "https://narvyn-site.pages.dev/assets/img/shot-home.webp",
+        "https://narvyn-site.pages.dev/assets/img/shot-detail.webp",
+        "https://narvyn-site.pages.dev/assets/img/shot-resource.webp"
+      ],
+      "videos": [
+        "https://mdn.github.io/shared-assets/videos/flower.mp4"
+      ],
+      "body": "## 这个 App 能做什么\n\n它是 **TouchGal 资源站**的安卓端适配器：浏览、搜索、收藏站内资源，把下载这件事做得比浏览器靠谱。\n\n- **分段多连接下载** —— 同一个文件拆成多段并行拉，跑满带宽；\n- **断点续传** —— 暂停、杀进程、换网络都不白跑，进度存在 `.mpart.meta` 里；\n- **内置解压** —— 7z / zip / rar 下完直接解，不用另装解压 App；\n- **三方网盘** —— 夸克网盘转存 + 直链下载已打通，官方盘与 Cloudreve 走同一套下载引擎。\n\n![](https://narvyn-site.pages.dev/assets/img/shot-downloads.webp)\n\n## 注意事项\n\n开发预览版，个人自用，不公开分发。界面和数据仍有改动可能，遇到下载不完整或模拟器起不来，请到 **设置 → 诊断信息** 一键导出日志反馈。"
+    },
+    {
+      "id": "a-2026-10-04-emulator",
+      "kind": "resident",
+      "title": "内置 PC 模拟器：首次要下载环境",
+      "summary": "Winlator 已嵌进 App，内核 79MB + rootfs 153MB，点「下载环境」即可",
+      "date": 1791075600000,
+      "images": [
+        "https://narvyn-site.pages.dev/assets/img/shot-emulator.webp"
+      ],
+      "videos": [],
+      "body": "## 怎么用\n\n首页底部「模拟器」tab → 环境未就绪时点 **下载环境** → 装完后在同一页 **打开容器列表**。\n\n- 安装包只有 39MB：内核与 rootfs 不再塞进 APK，首次使用时按需拉取；\n- **只有 arm64 机器能跑**（骁龙 / 天玑 64 位），x86 模拟器与老机器只能当下载器用；\n- 容器、分辨率、DXVK 这些配置项在模拟器设置里，可按网上教程自行调整。\n\n## 起不来的时候\n\n不要凭猜：设置 → 诊断信息里能看到 ABI、rootfs 落点、上一次异常退出的堆栈，一键导出 zip 反馈即可。"
+    },
+    {
+      "id": "a-2026-10-03-storage",
+      "kind": "resident",
+      "title": "下载文件去哪了：公共 Download 目录",
+      "summary": "开启「所有文件访问」后，成品直接落在系统 Download/Narvyn",
+      "date": 1790989200000,
+      "images": [
+        "https://narvyn-site.pages.dev/assets/img/shot-settings.webp"
+      ],
+      "videos": [],
+      "body": "分段下载要对成品做随机写，系统相册式的安全目录做不到，所以走 **所有文件访问** 授权 + 公共 Download 目录直写。\n\n- 授权入口：设置 → 存储，或首页顶部提示条；\n- 授权回来立即生效，下载目录热切换到 `Download/Narvyn`，已有的文件会自动搬过去，**不用重启 App**；\n- 不授权也能用，只是文件留在应用私有目录，别的 App 读不到。\n\n## 关于 .mpart\n\n下载中途的临时文件后缀是 `.mpart`，下完自动改名成正常压缩包。如果你在 Download 目录看到它且任务已显示完成，下次进下载中心会自动收回改名，**别删也别重下**。"
+    },
+    {
+      "id": "p-2026-10-05-welcome",
+      "kind": "popup",
+      "title": "欢迎使用开发预览版下载器",
+      "summary": "分段多连接 + 断点续传 + 内置解压；内嵌 PC 模拟器，首次用需下载环境。",
+      "date": 1791162000000,
+      "images": [
+        "https://narvyn-site.pages.dev/assets/img/shot-home.webp"
+      ],
+      "videos": [
+        "https://mdn.github.io/shared-assets/videos/flower.mp4"
+      ],
+      "body": "## 先说清楚\n\n这是 **开发预览版**：给自用机器装的功能验证包，不是正式版。\n\n- 首页顶部就是资源瀑布流，点封面进详情，底部第三个按钮进下载中心；\n- 下载支持分段多连接与断点续传，暂停 / 杀进程都不白跑；\n- 夸克网盘已打通（账号管理里登录，登录后再点网盘资源）；\n- 模拟器 tab 首次要点「下载环境」，只有 arm64 机器能跑。\n\n有任何问题，设置 → 诊断信息 一键导出日志。"
+    }
+  ]
+}

@@ -285,7 +285,7 @@
       100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
     }
     .hero h1 {
-      font-size: clamp(44px, 7.2vw, 84px);
+      font-size: clamp(32px, 8.8vw, 84px);
       font-weight: 700; letter-spacing: -.035em; line-height: 1.06;
       margin-bottom: 22px;
     }
@@ -844,7 +844,9 @@
 
   
     /* ==== Narvyn 追加（少量） ==== */
-    .shots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 26px; align-items: start; }
+    .shots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 22px 16px; align-items: start; }
+    .shots-grid .phone-mockup { width: 100%; margin: 0; }
+    @media (max-width: 480px) { .shots-grid { grid-template-columns: repeat(2, 1fr); } .shot-cap { font-size: 11px; } }
     .shot-cap { text-align: center; font-size: 13px; font-weight: 600; color: var(--fg-2); margin-top: 12px; }
     .dl-closed { display: inline-block; padding: 14px 24px; border-radius: 999px; background: var(--bg-gray); border: 1px solid var(--border); color: var(--fg-2); font-size: 15px; font-weight: 600; }
     .dl-closed-note { margin-top: 14px; font-size: 13px; color: var(--fg-2); }
@@ -873,7 +875,7 @@
     <section class="hero">
       <div class="halo" aria-hidden="true"></div>
       <div class="container">
-        <span class="kicker reveal"><span class="dot"></span>v1.2.0 · 安装包 37 MB 级 · 内核首用自动配置</span>
+        <span class="kicker reveal"><span class="dot"></span>v1.2.0 · 安装包 37 MB 级</span>
         <h1 aria-label="看到、下到、玩到，一部手机全搞定。">
           <span class="reveal" style="--d:.05s; display:block">看到、下到、玩到，</span>
           <span class="grad reveal" style="--d:.16s; display:block">一部手机全搞定。</span>
@@ -1001,7 +1003,7 @@
       <div class="container">
         <div class="sec-head">
           <span class="label reveal">更多亮点</span>
-          <h2 class="reveal" style="--d:.08s">细节里，全是诚意。</h2>
+          <h2 class="reveal" style="--d:.08s">顺手的地方，都替你调好了。</h2>
         </div>
         <div class="bento" data-stagger>
           <div class="b-card tall reveal" style="--d:0s">
@@ -1050,7 +1052,7 @@
       <div class="container">
         <div class="sec-head">
           <span class="label reveal">界面预览</span>
-          <h2 class="reveal" style="--d:.08s">六屏，看懂 Narvyn。</h2>
+          <h2 class="reveal" style="--d:.08s">先看一眼，再装不迟。</h2>
         </div>
         <div class="shots-grid" data-stagger>
           <div class="reveal" style="--d:0s"><div class="phone-mockup"><div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen"><img src="assets/img/shot-home.webp" width="720" height="1280" decoding="async" alt="Narvyn 首页瀑布流：快照秒开"></div></div></div><p class="shot-cap">首页瀑布流</p></div>
