@@ -2,7 +2,10 @@
   Cache-Control: public, max-age=31536000, immutable
 /update.json
   Cache-Control: no-cache
-/sw.js
+# 公告清单（App 每次冷启动拉一次，lib/version.dart kAnnouncementUrl）。
+# 和 update.json 一样必须 no-cache：少了这条，改了公告最快也要等边缘节点
+# 过期才看得到，"发出去没人看见"这种问题在线上根本查不动。
+/announcements.json
   Cache-Control: no-cache
 /index.html
   Cache-Control: no-cache
