@@ -182,7 +182,9 @@
     width: 72px; height: 17px; border-radius: 999px;
     background: var(--bezel);
   }
-  .device img { width: 100%; aspect-ratio: 720 / 1280; object-fit: cover; }
+  /* height:auto 必须显式写：否则 <img height> 属性的 presentational hint 生效，
+     aspect-ratio 被无视、手机壳按 1280px 高渲染（v4 上线后真视口实测踩到） */
+  .device img { width: 100%; height: auto; aspect-ratio: 720 / 1280; object-fit: cover; }
 
   /* ---- 特性六卡 ---- */
   .cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
