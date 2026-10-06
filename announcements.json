@@ -3,44 +3,40 @@
   "_note2": "视频样例用 MDN 的 flower.mp4（1.1 MB，2026-10-05 实测 200 video/mp4）。站方 PV 源 cloud.touchgaloss.com 的那条老链接同日实测已 404 —— 站外链接会腐烂，正式公告要放站内 PV 请先自己验一遍 200，别假设还在。",
   "items": [
     {
-      "id": "a-2026-10-05-welcome",
+      "id": "a-2026-10-06-textonly",
       "kind": "resident",
-      "title": "欢迎使用开发预览版下载器",
-      "summary": "分段多连接下载 · 断点续传 · 内置解压，一站搞定 TouchGal 资源",
-      "date": 1791162000000,
+      "title": "纯文字公告",
+      "summary": "这条公告没有配图、也没有视频，只测试纯文字排版。",
+      "date": 1791287000000,
+      "images": [],
+      "videos": [],
+      "body": "## 纯文字公告\n\n这条公告**没有配图、也没有视频**，用来确认：\n\n- 只有文字时，首页卡片与详情页的排版是否正常；\n- 空的 `images` / `videos` 数组不会导致留白或报错；\n- 摘要与正文的中文换行、标点、行距是否舒服。\n\n如果你能读完这段，说明纯文字形态是通的。"
+    },
+    {
+      "id": "a-2026-10-06-media",
+      "kind": "resident",
+      "title": "图文 + 视频公告",
+      "summary": "这条同时带 3 张照片和 1 段视频，测试图墙与播放卡。",
+      "date": 1791287100000,
       "images": [
         "https://narvyn-site.pages.dev/assets/img/shot-home.webp",
         "https://narvyn-site.pages.dev/assets/img/shot-detail.webp",
-        "https://narvyn-site.pages.dev/assets/img/shot-resource.webp"
+        "https://narvyn-site.pages.dev/assets/img/shot-downloads.webp"
       ],
       "videos": [
         "https://mdn.github.io/shared-assets/videos/flower.mp4"
       ],
-      "body": "## 这个 App 能做什么\n\n它是 **TouchGal 资源站**的安卓端适配器：浏览、搜索、收藏站内资源，把下载这件事做得比浏览器靠谱。\n\n- **分段多连接下载** —— 同一个文件拆成多段并行拉，跑满带宽；\n- **断点续传** —— 暂停、杀进程、换网络都不白跑，进度存在 `.mpart.meta` 里；\n- **内置解压** —— 7z / zip / rar 下完直接解，不用另装解压 App；\n- **三方网盘** —— 夸克网盘转存 + 直链下载已打通，官方盘与 Cloudreve 走同一套下载引擎。\n\n![](https://narvyn-site.pages.dev/assets/img/shot-downloads.webp)\n\n## 注意事项\n\n开发预览版，个人自用，不公开分发。界面和数据仍有改动可能，遇到下载不完整或模拟器起不来，请到 **设置 → 诊断信息** 一键导出日志反馈。"
+      "body": "## 图文 + 视频\n\n这条公告带 **3 张照片 + 1 段视频**。\n\n### 照片\n\n![](https://narvyn-site.pages.dev/assets/img/shot-home.webp)\n\n![](https://narvyn-site.pages.dev/assets/img/shot-detail.webp)\n\n![](https://narvyn-site.pages.dev/assets/img/shot-downloads.webp)\n\n### 视频\n\n详情页里应该能看到播放卡。\n"
     },
     {
-      "id": "a-2026-10-04-emulator",
+      "id": "a-2026-10-06-longform",
       "kind": "resident",
-      "title": "内置 PC 模拟器：首次要下载环境",
-      "summary": "Winlator 已嵌进 App，内核 79MB + rootfs 153MB，点「下载环境」即可",
-      "date": 1791075600000,
-      "images": [
-        "https://narvyn-site.pages.dev/assets/img/shot-emulator.webp"
-      ],
+      "title": "长文公告（1000 字以上）",
+      "summary": "这条正文超过 1000 字，测试长文滚动、标题层级与段落间距。",
+      "date": 1791287200000,
+      "images": [],
       "videos": [],
-      "body": "## 怎么用\n\n首页底部「模拟器」tab → 环境未就绪时点 **下载环境** → 装完后在同一页 **打开容器列表**。\n\n- 安装包只有 39MB：内核与 rootfs 不再塞进 APK，首次使用时按需拉取；\n- **只有 arm64 机器能跑**（骁龙 / 天玑 64 位），x86 模拟器与老机器只能当下载器用；\n- 容器、分辨率、DXVK 这些配置项在模拟器设置里，可按网上教程自行调整。\n\n## 起不来的时候\n\n不要凭猜：设置 → 诊断信息里能看到 ABI、rootfs 落点、上一次异常退出的堆栈，一键导出 zip 反馈即可。"
-    },
-    {
-      "id": "a-2026-10-03-storage",
-      "kind": "resident",
-      "title": "下载文件去哪了：公共 Download 目录",
-      "summary": "开启「所有文件访问」后，成品直接落在系统 Download/Narvyn",
-      "date": 1790989200000,
-      "images": [
-        "https://narvyn-site.pages.dev/assets/img/shot-settings.webp"
-      ],
-      "videos": [],
-      "body": "分段下载要对成品做随机写，系统相册式的安全目录做不到，所以走 **所有文件访问** 授权 + 公共 Download 目录直写。\n\n- 授权入口：设置 → 存储，或首页顶部提示条；\n- 授权回来立即生效，下载目录热切换到 `Download/Narvyn`，已有的文件会自动搬过去，**不用重启 App**；\n- 不授权也能用，只是文件留在应用私有目录，别的 App 读不到。\n\n## 关于 .mpart\n\n下载中途的临时文件后缀是 `.mpart`，下完自动改名成正常压缩包。如果你在 Download 目录看到它且任务已显示完成，下次进下载中心会自动收回改名，**别删也别重下**。"
+      "body": "## 这个 App 是怎么来的\n\nNarvyn 一开始并不是一个\"产品\"。它只是我给自己写的一个小工具 —— 因为用手机浏览器上 TouchGal 找资源，体验实在太碎了：点开一个链接，跳转、等待、下载失败、再重来。于是就有了第一个版本：把网页包一层，只求能稳定地看列表、点进详情、把文件下下来。\n\n后来越加越多，慢慢变成了现在这个样子。\n\n### 一、下载这件事，比想象中难\n\n真正花时间的不是界面，是下载。\n\n浏览器下载最怕三件事：断流、慢、以及下到一半没空间。分段多连接解决的是\"慢\"：把一个大文件拆成若干段并行拉，单连接的带宽瓶颈就被绕开了。断点续传解决的是\"断\"：进度写在 `.mpart.meta` 里，杀进程、切网络、锁屏都不白跑。至于空间，只能靠提前告诉用户文件多大、以及把成品直接落到公共 `Download/Narvyn` 目录，让别的 App 也能拿到。\n\n这几件事听起来简单，做起来全是细节。比如跨卷重命名会失败（EXDEV），比如应用私有目录在 Android 上\"看得见但打不开\"，比如前台服务的类型必须声明成 `dataSync`，否则长时间下载会被系统掐掉。\n\n### 二、内置 PC 模拟器\n\n第二部分是模拟器。\n\n很多 Galgame 只有 PC 版，想在手机上玩就得靠 Winlator 这类方案。直接让用户自己去折腾 rootfs、容器、DXVK 显然不现实，所以这里把 Winlator 嵌了进来，做成一个 tab：环境没就绪时点\"下载环境\"，内核与 rootfs 按需拉取，不塞进安装包。\n\n代价是安装包从一百多兆瘦到三十多兆，而首次使用需要联网下载约 230 MB 的环境文件。好处是不玩模拟器的人不用为它付出体积。\n\n### 三、公告与更新\n\n公告与更新检查都走同一个思路：**内容放在云端，App 只负责取回来显示**。\n\n这样改文案、发通知都不用重新发版。代价是要处理网络 —— 尤其是在国内，主站域名可能被污染、直连 GitHub 会被重置，所以链路上挂了多个镜像，逐个尝试直到拿到数据为止。这条链路今天刚修过一次：镜像返回的 `Content-Type` 是 `text/plain`，而 HTTP 客户端只在 JSON 类型时才自动解析，于是数据明明拉回来了却被当成空，整条镜像链静默失效。\n\n### 四、还在路上的\n\n- 搜索、下载、模拟器几个页面的转场还不够顺；\n- 详情页的容器变换转场想做但还没做；\n- 下载中心的滑动删除还差最后一点手感；\n- 真机上的各种边角情况（刘海、手势条、深色模式）还要继续磨。\n\n### 五、关于反馈\n\n开发预览版只在自己的机器上验证过，不同厂商的 ROM 差异很大：有的会杀后台、有的会限制自启、有的对\"所有文件访问\"权限有额外弹窗。遇到问题请把日志导出来 —— 日志里包含设备型号、系统版本、ABI、rootfs 落点，以及最近一次异常退出的堆栈，这些信息比一句\"下载失败了\"有用得多。\n\n如果这段长文你能顺畅地从头滚到底、标题层级清晰、段落间距不挤不散，那长文排版这一项就算过了。\n"
     },
     {
       "id": "p-2026-10-05-welcome",
