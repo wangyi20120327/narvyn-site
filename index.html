@@ -32,6 +32,7 @@
     --shadow-sm: 0 1px 2px rgba(16, 24, 40, .05);
     --shadow-md: 0 2px 4px rgba(16, 24, 40, .04), 0 18px 44px -22px rgba(16, 24, 40, .18);
     --radius: 20px;
+    --card-hover-border: rgba(61, 107, 229, .35);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --glow: rgba(107, 155, 255, .12);
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
       --shadow-md: 0 2px 4px rgba(0, 0, 0, .3), 0 18px 44px -20px rgba(0, 0, 0, .6);
+      --card-hover-border: rgba(107, 155, 255, .42);
     }
   }
 
@@ -78,6 +80,10 @@
     transition: background .3s ease, border-color .3s ease;
   }
   .tb.scrolled { background: var(--tb-bg); border-color: var(--border); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  /* ★ 2026-10-06：不支持 backdrop-filter 的内核上，半透明顶栏会让正文透上来糊成一片 → 退回实底 */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .tb.scrolled { background: var(--bg); }
+  }
   .tb-in { display: flex; align-items: center; gap: 22px; height: 60px; }
   .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
   .logo-mark {
@@ -196,7 +202,7 @@
     box-shadow: var(--shadow-sm);
     transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(61, 107, 229, .35); }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--card-hover-border); }
   .card .ic {
     width: 40px; height: 40px; border-radius: 12px;
     background: var(--tile); color: var(--accent);
@@ -260,6 +266,10 @@
     transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .2, 1);
     transition-delay: var(--d, 0s);
   }
+  /* ★ 兜底档：head 里的脚本在「JS 报错」或「IntersectionObserver 建好却不回调」时
+     会给 html 加上 .rv-fallback，让所有 .rv 直接可见。
+     宁可丢掉渐入，也不能让内容永久停在 opacity:0。 */
+  html.js.rv-fallback .rv { opacity: 1; transform: none; transition: none; }
   @media (prefers-reduced-motion: reduce) {
     html.js .rv { opacity: 1; transform: none; transition: none; }
     .float-chip { animation: none; }
@@ -269,7 +279,27 @@
     :root { --border: rgba(23, 24, 29, .22); }
     .card, .dl-card { border-width: 1.5px; }
   }
+  /* ★ 2026-10-06 修复：上面那条 --border 是浅色值，却写在深色 media 之后 ——
+     深色主题 + 系统「高对比度」时，边框会被算成近黑色，在深色底上几乎看不见。补深色专用值。 */
+  @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+    :root { --border: rgba(255, 255, 255, .26); }
+  }
 </style>
+<script>
+/* ★ 2026-10-06 修复（原实现有三处隐患）：
+   ① 这行原在 </body> 前 —— 页面已经画过一次才被隐藏，会「闪一下 → 消失 → 再渐入」。
+      挪到 head（样式之后、首绘之前）即彻底消除 FOUC。
+   ② 原来用 className = "js" 直接赋值，会清掉 <html> 上已有的 class，改用 classList.add。
+   ③ 原来「隐藏」和「解锁」分别绑在两个脚本上：页尾脚本一旦没跑成，
+      整页 .rv 会永久停在 opacity:0（白屏且不自愈）。
+   这里只负责「开启隐藏」+「脚本一报错就立刻放开」；另一层兜底（IO 建好却不回调）
+   放在页尾脚本里，因为它必须知道 IO 到底有没有回调过。 */
+(function () {
+  var h = document.documentElement;
+  h.classList.add("js");
+  window.addEventListener("error", function () { h.classList.add("rv-fallback"); });
+})();
+</script>
 </head>
 <body>
 
@@ -455,31 +485,44 @@
   </div>
 </footer>
 
-<script>document.documentElement.className = "js";</script>
 <script>
 (function () {
+  var h = document.documentElement;
   var tb = document.getElementById("tb");
-  var onScroll = function () {
-    tb.classList.toggle("scrolled", (window.scrollY || 0) > 8);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  if (tb) {
+    var onScroll = function () {
+      tb.classList.toggle("scrolled", (window.scrollY || 0) > 8);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 
   var els = Array.prototype.slice.call(document.querySelectorAll(".rv"));
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!("IntersectionObserver" in window) || reduced) {
-    els.forEach(function (el) { el.classList.add("in"); });
+  var release = function () { h.classList.add("rv-fallback"); };
+
+  if (!("IntersectionObserver" in window) || reduced) { release(); return; }
+
+  var fired = false;
+  try {
+    var io = new IntersectionObserver(function (entries) {
+      fired = true;
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  } catch (e) {
+    release();
     return;
   }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
-  els.forEach(function (el) { io.observe(el); });
+
+  /* ★ 兜底：IO 建好了却一次都没回调（个别内核 bug / 渲染管线异常）→ 1.5s 后放开全部内容。
+     正常浏览器第一帧就会回调，fired 立刻为 true，这条永不生效，渐入动画不受影响。 */
+  setTimeout(function () { if (!fired) release(); }, 1500);
 })();
 </script>
 </body>
