@@ -333,7 +333,7 @@
         <a class="btn btn-primary" href="#download">获取 Narvyn</a>
         <a class="btn btn-ghost" href="#journey">看看怎么玩</a>
       </div>
-      <p class="hero-meta rv" style="--d:.36s">版本维护中 · 下载暂未开放 · 已装用户可在应用内「检查更新」</p>
+      <p class="hero-meta rv" style="--d:.36s">下载已开放 · 已装用户可在应用内「检查更新」</p>
 
       <div class="stage rv" style="--d:.25s">
         <div class="float-chip fc-l">
@@ -459,18 +459,17 @@
     </div>
   </section>
 
-  <!-- 下载区：封锁中 -->
+  <!-- 下载区：开放（2026-10-07） -->
   <section id="download" aria-label="下载">
     <div class="wrap">
       <div class="dl-card rv">
-        <!-- 2026-10-05 用户指令：下载暂时封锁。
-             重开时把 .dl-chip 一段换回双直链（裸 <a download>，不依赖 JS）：
-             <a class="btn btn-primary" href="https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk" download>直连下载 APK</a>
-             <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-releases/releases/latest/download/Narvyn.apk">境内加速下载</a>
-             并同步标题行、hero-meta 与 update.json。 -->
-        <span class="dl-chip">下载暂时关闭 · 新版本准备中</span>
-        <h2>马上回来。</h2>
-        <p class="dl-note">已有安装包的用户：打开 App「设置 → 检查更新」即可获取新版本。</p>
+        <!-- 2026-10-07 下载重开：安装包直链已从 narvyn-releases 迁至本仓 Release
+             （资产名保持 Narvyn.apk，latest 直链才指向新仓），narvyn-site 已设 public。
+             需再封锁时把双直链一段换回 <span class="dl-chip">下载暂时关闭</span> 并同步标题行、hero-meta 与 update.json。 -->
+        <a class="btn btn-primary" href="https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk" download>直连下载 APK</a>
+        <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk">境内加速下载</a>
+        <h2>获取 Narvyn。</h2>
+        <p class="dl-note">v1.2.0 · 37 MB；已装用户也可在应用内「检查更新」获取新版本。</p>
         <p class="dl-fine">个人自用 · 请勿公开分发</p>
       </div>
     </div>
