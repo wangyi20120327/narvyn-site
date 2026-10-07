@@ -3,14 +3,14 @@
   "versionCode": 4,
   "url": "https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk",
   "urlBackup": "https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk",
-  "apkSize": 39278203,
-  "sha1": "ac767398909a2513b83883c1b87dcb4c114ad469",
+  "apkSize": 39283747,
+  "sha1": "46c3f25545484431b54a725ac3d571864316aad4",
   "notes": [
     "模拟器入口改为实验性开关：设置 → 实验性功能 → 开启模拟器（打开游戏可能闪退崩溃，请知悉后再开）",
     "模拟器启动链路多处修复：内核解释器路径、环境路径改写、重复启动风暴",
     "网盘账号不再做二级页：登录状态与退出登录直接放在设置页",
     "下载失败的任务自动清理残留副本文件",
-    "应用内更新：新版本会自动提醒，也可手动检查",
+    "应用内更新：新版本会自动提醒，也可手动检查；同一版本提醒 3 次未更新将转为强制更新弹窗",
     "升级提示：之前用过模拟器的，建议先在系统设置清除本应用数据，再重新下载环境"
   ]
 }
