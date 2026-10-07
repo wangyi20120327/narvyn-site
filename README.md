@@ -7,7 +7,9 @@ Narvyn 的落地页。**v4 起是单文件全内联**：只有 `index.html` + `a
 - 部署目标：Cloudflare Pages（连的是 `narvyn-site` 仓，**2026-10-07 起设为 public**）
 - 公开域名：`https://narvyn-site.pages.dev`
 - 站内下载按钮直链**本仓 Release** 的最新 `Narvyn.apk`（2026-10-07 从 `narvyn-releases` 迁入，
-  各历史版本 APK 一并在本仓 Release），并给 `gh-proxy.com` 境内加速备用链
+  各历史版本 APK 一并在本仓 Release）。**主按钮走 `gh.zwy.one` 加速**（2026-10-07 实测 ~10 MB/s；
+  gh-proxy.com 仅 ~150 KB/s，已弃用），GitHub 直连为备用按钮；`update.json` 的
+  `url`/`urlBackup` 同口径（App 检查更新下载走同一套）
 - **仍留在 `narvyn-releases` 的**：`runtime-assets` Release（rootfs / 内核，App 内写死直链）与
   公告图 `site-assets` —— 那个仓**不能删**，删了已装用户的公告与环境下载全断
 
