@@ -4,9 +4,12 @@ Narvyn 的落地页。**v4 起是单文件全内联**：只有 `index.html` + `a
 样式/结构/脚本全部写在 `index.html` 里，零 CDN、无构建步骤、跟随系统深浅色。
 
 - 面向人群：中国大陆的手机用户
-- 部署目标：Cloudflare Pages（连的是 **private** 仓 `narvyn-site`）
+- 部署目标：Cloudflare Pages（连的是 `narvyn-site` 仓，**2026-10-07 起设为 public**）
 - 公开域名：`https://narvyn-site.pages.dev`
-- 站内下载按钮直链 `narvyn-releases` 的最新 Release `Narvyn.apk`，并给 `gh-proxy.com` 境内加速备用链
+- 站内下载按钮直链**本仓 Release** 的最新 `Narvyn.apk`（2026-10-07 从 `narvyn-releases` 迁入，
+  各历史版本 APK 一并在本仓 Release），并给 `gh-proxy.com` 境内加速备用链
+- **仍留在 `narvyn-releases` 的**：`runtime-assets` Release（rootfs / 内核，App 内写死直链）与
+  公告图 `site-assets` —— 那个仓**不能删**，删了已装用户的公告与环境下载全断
 
 ---
 
@@ -23,8 +26,9 @@ Narvyn 的落地页。**v4 起是单文件全内联**：只有 `index.html` + `a
 **对策**：App 侧两个 JSON 都改成「主源 + 镜像链」（见 `narvyn/lib/version.dart`、
 `narvyn/lib/announcements.dart`）。镜像走 `gh.zwy.one` / `gh-proxy.com` 反代 GitHub raw。
 
-> 🔴 **镜像只能服务 public 仓。** `narvyn-site` 是 private，走镜像一律 404。
-> 所以 `update.json` 与 `announcements.json` 在 **`narvyn-releases`（public）根目录各有一份副本**，
+> 🔴 **App 已发版本里写死的镜像 URL 仍指向 `narvyn-releases`**（`gh.zwy.one` / `gh-proxy.com` 反代 raw）。
+> `narvyn-site` 公开后镜像理论上也能服务本仓 raw，但**旧版 App 改不了已写死的地址**，
+> 所以 `update.json` 与 `announcements.json` 在 **`narvyn-releases` 根目录各有一份副本**照放，
 > **发版时两处都要改**（见下方流程第 3 步）。
 >
 > 🔴 **镜像返回的 `Content-Type` 是 `text/plain`**，dio 只在响应类型是 JSON 时才自动解析。
@@ -45,7 +49,7 @@ python -m http.server 8080
 ## 部署到 Cloudflare Pages
 
 1. 登录 Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
-2. 选择 GitHub **private** 仓库 **narvyn-site**（本目录内容推送在该仓库根目录）
+2. 选择 GitHub 仓库 **narvyn-site**（本目录内容推送在该仓库根目录；仓已 public，Pages 不受可见性影响）
 3. 构建配置：
    - 框架预设：**None**
    - 构建命令：**留空**
@@ -62,8 +66,9 @@ python -m http.server 8080
 
 1. 改 `narvyn/lib/version.dart`（App 内版本号，必须与 `pubspec.yaml` 一致）
 2. 改本目录 `update.json` 的 `versionName` / `versionCode` / `notes`（`sha1` 留空则跳过校验）
-3. **把同一份 `update.json` 复制到 `narvyn-releases` 仓根目录** ← 漏了这步，国内「检查更新」必失败
-4. 到 **narvyn-releases** 仓库发 Release 并上传新 APK —— **资产名必须叫 `Narvyn.apk`**（直链按文件名指向 latest）
+3. **把同一份 `update.json` 复制到 `narvyn-releases` 仓根目录** ← 漏了这步，旧版 App 的国内「检查更新」必失败
+4. 到**本仓（narvyn-site）**发 Release 并上传新 APK —— **资产名必须叫 `Narvyn.apk`**（直链按文件名指向 latest）；
+   新 Release 建好后确认它才是 latest（`gh release view --latest` 或看 Release 页标记）
 5. 推送 `narvyn-site`（Cloudflare Pages 自动部署）
 
 > 算新 APK 的 SHA1：`certutil -hashfile Narvyn.apk SHA1`（Windows），填进 `update.json` 的 `sha1`。
