@@ -9,6 +9,12 @@
 <meta property="og:description" content="浏览、下载、解压、开玩，中间不需要别的 App。">
 <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0C10" media="(prefers-color-scheme: dark)">
+<!-- 站点图标：文件名带 v5 后缀 —— _headers 里 /assets/* 是 immutable 一年强缓存，
+     换图必须换文件名，否则老用户会一直看到旧图标。 -->
+<link rel="icon" type="image/x-icon" href="/assets/img/favicon-v5.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/logo-v5-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/logo-v5-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/logo-v5-180.png">
 <!--
   Narvyn 官网 v4 · 原创实现
   设计口径：Apple 式产品页的干净排版（大标题 / 大留白 / 少即是多），
@@ -88,9 +94,7 @@
   .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
   .logo-mark {
     width: 28px; height: 28px; border-radius: 8px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #fff; display: grid; place-items: center;
-    font-size: 14px; font-weight: 800;
+    display: block; object-fit: cover; flex: none;
   }
   .tb nav { display: flex; gap: 20px; margin-left: 6px; }
   .tb nav a { font-size: 13.5px; color: var(--muted); transition: color .2s; }
@@ -305,7 +309,7 @@
 
 <header class="tb" id="tb">
   <div class="wrap tb-in">
-    <a class="logo" href="#top"><span class="logo-mark">N</span>Narvyn</a>
+    <a class="logo" href="#top"><img class="logo-mark" src="/assets/img/logo-v5-56.png" alt="Narvyn 图标" width="28" height="28">Narvyn</a>
     <nav aria-label="页内导航">
       <a href="#features">特性</a>
       <a href="#journey">旅程</a>
