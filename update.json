@@ -1,17 +1,18 @@
 {
-  "versionName": "1.4.0",
-  "versionCode": 5,
-  "title": "V1.4.0 补丁",
+  "versionName": "1.5.0",
+  "versionCode": 6,
+  "title": "V1.5.0",
   "forceUpdate": true,
   "url": "https://gh.zwy.one/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk",
   "urlBackup": "https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk",
-  "apkSize": 40334178,
-  "sha1": "7068a3f0c0e59ea39c450df06aed17dac8d47a93",
+  "apkSize": 18705048,
+  "sha1": "7a56864aff21aa6f4fc12d20dcc899040a0691cb",
   "notes": [
-    "官网地址迁移：公告与「检查更新」不再绕远路，点了就出结果（旧地址已停用，之前要等十几二十秒）",
-    "动效：底栏切换与浮层弹出改为弹簧回弹手感",
-    "软件源浮层：列表底部改成渐隐过渡，不再有一条硬切边",
-    "修复：聚合搜索结果里 &amp; 这类网页转义字符直接漏在界面上",
-    "界面细节：搜索框圆角比例、悬浮按钮等多处排版修正"
+    "夸克网盘直链：分享链接粘贴即解析，免转存直接出直链；分享的是文件夹会自动展开里面的文件，分卷压缩包整组一起加入下载",
+    "修复：部分夸克分享链接「解析不了」——分享根目录里套着文件夹时，点下载没反应",
+    "应用图标换成新的了",
+    "下载器设置补齐：下载速度限制、失败自动重试、保持后台下载、下载调试",
+    "下载失败的原因现在会记进诊断日志，出问题导出日志即可定位",
+    "这是最后一次大更新：核心功能已定型，后续只做小修补，不再有大改造"
   ]
 }
