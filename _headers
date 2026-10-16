@@ -2,6 +2,11 @@
   Cache-Control: public, max-age=31536000, immutable
 /update.json
   Cache-Control: no-cache
+# 安装包（2026-10-17 起下载主链从 GitHub Release 迁到本站：
+# 18.7MB < Pages 单文件 25MiB 上限）。必须 no-cache —— 每次发版同名覆盖，
+# 缓存住会让用户下到上一个版本的包，而且"下到旧包"这种问题在线上极难排查。
+/Narvyn.apk
+  Cache-Control: no-cache
 # 公告清单（App 每次冷启动拉一次，lib/version.dart kAnnouncementUrl）。
 # 和 update.json 一样必须 no-cache：少了这条，改了公告最快也要等边缘节点
 # 过期才看得到，"发出去没人看见"这种问题在线上根本查不动。
