@@ -467,13 +467,12 @@
   <section id="download" aria-label="下载">
     <div class="wrap">
       <div class="dl-card rv">
-        <!-- 2026-10-07 下载重开：安装包直链已从 narvyn-releases 迁至本仓 Release
-             （资产名保持 Narvyn.apk，latest 直链才指向新仓），narvyn-site 已设 public。
-             同日实测换主备：gh-proxy.com 只有 ~150 KB/s，gh.zwy.one 有 ~10 MB/s
-             （公告镜像同款）⇒ 加速链为主按钮、GitHub 直连为备用按钮。
-             需再封锁时把双直链一段换回 <span class="dl-chip">下载暂时关闭</span> 并同步标题行、hero-meta 与 update.json。 -->
-        <a class="btn btn-primary" href="https://gh.zwy.one/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk" download>下载 APK（境内加速）</a>
-        <a class="btn btn-ghost" href="https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk" download>GitHub 直连</a>
+        <!-- 2026-10-17 下载主链切到本站在 Cloudflare Pages 上的同域直链 ——
+             单文件 25MiB 上限，18.7MB 的单架构包正好放得下（此前 38.5MB 的三架构包超限，
+             只能放 GitHub Release）。update.json 同步为「站内主链 + gh-proxy 加速备链」，
+             gh-proxy 是当日实测唯一可用的加速域（gh.zwy.one 3/3 全挂、github.com 直连 0/3）。 -->
+        <a class="btn btn-primary" href="https://narvyn.pages.dev/Narvyn.apk" download>下载 APK</a>
+        <a class="btn btn-ghost" href="https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk" download>备用通道（加速）</a>
         <h2>获取 Narvyn。</h2>
         <p class="dl-note">v1.5.0 · 18 MB；已装用户也可在应用内「检查更新」获取新版本。</p>
         <p class="dl-fine">个人自用 · 请勿公开分发</p>
