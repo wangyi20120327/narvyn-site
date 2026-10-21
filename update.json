@@ -1,18 +1,15 @@
 {
-  "versionName": "1.5.0",
-  "versionCode": 6,
-  "title": "V1.5.0",
+  "versionName": "1.5.1",
+  "versionCode": 7,
+  "title": "V1.5.1",
   "forceUpdate": true,
   "url": "https://narvyn.pages.dev/Narvyn.apk",
   "urlBackup": "https://gh-proxy.com/https://github.com/wangyi20120327/narvyn-site/releases/latest/download/Narvyn.apk",
-  "apkSize": 18705048,
-  "sha1": "7a56864aff21aa6f4fc12d20dcc899040a0691cb",
+  "apkSize": 18706400,
+  "sha1": "5454eddf221ff86d6854f6a5092a00f6d6854708",
   "notes": [
-    "夸克网盘直链：分享链接粘贴即解析，免转存直接出直链；分享的是文件夹会自动展开里面的文件，分卷压缩包整组一起加入下载",
-    "修复：部分夸克分享链接「解析不了」——分享根目录里套着文件夹时，点下载没反应",
-    "应用图标换成新的了",
-    "下载器设置补齐：下载速度限制、失败自动重试、保持后台下载、下载调试",
-    "下载失败的原因现在会记进诊断日志，出问题导出日志即可定位",
-    "这是最后一次大更新：核心功能已定型，后续只做小修补，不再有大改造"
+    "浏览器里下载的东西现在单独使用更高的连接数（默认 12 路），同一链接下载更快；可在「下载器设置 → 浏览器下载线程数」里调整",
+    "普通下载的「下载线程数」保持不变，两套互不影响",
+    "其余为稳定性修补"
   ]
 }
